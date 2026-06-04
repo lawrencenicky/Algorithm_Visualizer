@@ -1,8 +1,10 @@
 # Royal Algorithm Visualizer
 
-A polished algorithm visualizer built with vanilla HTML, CSS, and JavaScript.
+![Intro screenshot of Royal Algorithm Visualizer](Screenshots/Intro.png)
 
-## What is included
+A polished web-based algorithm visualizer built with vanilla HTML, CSS, and JavaScript. It showcases sorting and pathfinding algorithms with an elegant royal dark theme and interactive controls.
+
+## Features
 
 - Sorting visualizer
   - Bubble Sort
@@ -14,9 +16,8 @@ A polished algorithm visualizer built with vanilla HTML, CSS, and JavaScript.
   - Breadth-First Search
   - Dijkstra's Algorithm
   - A* Search
-- Royal dark theme using navy, purple, gold, ruby, and emerald colors
-- Adjustable speed controls
-- Adjustable array size
+- Royal dark theme with navy, purple, gold, ruby, and emerald highlights
+- Adjustable speed controls and array size
 - Interactive grid with walls, weighted tiles, start node, target node, and eraser
 - No frontend framework required
 - No external dependencies required
@@ -50,7 +51,7 @@ http://localhost:5173
 ## Project structure
 
 ```text
-algorithm-visualizer-main/
+algo-vista/
 ├── css/
 │   └── style.css
 ├── js/
@@ -64,13 +65,11 @@ algorithm-visualizer-main/
 └── server.js
 ```
 
-## Notes for refinement
+## Future improvements
 
-Good next improvements would be:
-
-- Add pseudocode panels that highlight the active line during animation
-- Add algorithm complexity cards
+- Add pseudocode panels with active-line highlighting during animation
+- Add algorithm complexity and explanation cards
 - Add maze generation algorithms
-- Add mobile-first grid controls
+- Improve mobile-first controls and responsiveness
 - Add sound effects or animation presets
 - Add a light theme toggle
