@@ -1,8 +1,8 @@
-# Royal Algorithm Visualizer
+# AlgoVista
 
-![Intro screenshot of Royal Algorithm Visualizer](Screenshots/Intro.png)
+![Intro screenshot of AlgoVista](Screenshots/Intro.png)
 
-A polished web-based algorithm visualizer built with vanilla HTML, CSS, and JavaScript. It showcases sorting and pathfinding algorithms with an elegant royal dark theme and interactive controls.
+A polished web-based algorithm visualizer built with vanilla HTML, CSS, and JavaScript. AlgoVista showcases sorting and pathfinding algorithms with an elegant royal dark theme and interactive controls.
 
 ## Features
 
