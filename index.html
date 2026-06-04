@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="AlgoVista — an interactive visualizer for sorting and pathfinding algorithms. Watch every comparison, swap, and step in real time." />
+  <title>AlgoVista</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=Outfit:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+
+<body>
+  <div class="page-shell">
+    <header class="hero-header">
+      <nav class="topbar" aria-label="Primary navigation">
+        <a href="#" class="brand" aria-label="AlgoVista home">
+          <span class="brand-mark">◈</span>
+          <span>
+            <strong>AlgoVista</strong>
+            <small>Algorithm Visualizer</small>
+          </span>
+        </a>
+
+        <div class="tab-list" role="tablist" aria-label="Visualizer modes">
+          <button class="tab-btn active" id="sorting-tab" data-panel="sorting-panel" role="tab" aria-selected="true">Sorting Lab</button>
+          <button class="tab-btn" id="pathfinding-tab" data-panel="pathfinding-panel" role="tab" aria-selected="false">Pathfinding Lab</button>
+        </div>
+      </nav>
+
+      <section class="hero-copy">
+        <div>
+          <p class="eyebrow">Interactive Learning</p>
+          <h1>Watch algorithms work through data, one step at a time.</h1>
+          <p class="hero-text">
+            Generate arrays, compare sorting strategies, draw walls, place weighted tiles, and trace pathfinding algorithms across an interactive grid.
+          </p>
+        </div>
+        <div class="hero-card" aria-label="Project summary">
+          <span class="card-kicker">Included</span>
+          <strong>Sorting + Pathfinding</strong>
+          <p>Vanilla HTML, CSS, and JavaScript. No install required beyond a local server.</p>
+        </div>
+      </section>
+    </header>
+
+    <main>
+      <section class="panel active-panel" id="sorting-panel" role="tabpanel" aria-labelledby="sorting-tab">
+        <div class="panel-header">
+          <div>
+            <p class="eyebrow">Sorting Lab</p>
+            <h2>Compare values, swap bars, watch order emerge.</h2>
+          </div>
+          <p class="status-pill" id="sorting-status">Ready — generate an array to begin.</p>
+        </div>
+
+        <div class="control-grid">
+          <label class="control-card">
+            <span>Algorithm</span>
+            <select id="sort-algorithm">
+              <option value="bubble">Bubble Sort</option>
+              <option value="selection">Selection Sort</option>
+              <option value="insertion">Insertion Sort</option>
+              <option value="merge">Merge Sort</option>
+              <option value="quick">Quick Sort</option>
+            </select>
+          </label>
+
+          <label class="control-card">
+            <span>Array Size <strong id="array-size-value">36</strong></span>
+            <input id="array-size" type="range" min="12" max="80" value="36" />
+          </label>
+
+          <label class="control-card">
+            <span>Speed <strong id="sort-speed-value">60</strong></span>
+            <input id="sort-speed" type="range" min="1" max="100" value="60" />
+          </label>
+
+          <div class="button-row">
+            <button id="generate-array" class="btn ghost">Generate</button>
+            <button id="start-sort" class="btn primary">Start Sort</button>
+            <button id="stop-sort" class="btn danger" disabled>Stop</button>
+          </div>
+        </div>
+
+        <div class="visual-card">
+          <div class="legend" aria-label="Sorting color legend">
+            <span><i class="legend-dot default"></i> Default</span>
+            <span><i class="legend-dot compare"></i> Comparing</span>
+            <span><i class="legend-dot swap"></i> Swapping</span>
+            <span><i class="legend-dot sorted"></i> Sorted</span>
+          </div>
+          <div id="bar-visualizer" class="bar-visualizer" aria-label="Sorting visualizer"></div>
+        </div>
+
+        <aside class="explanation-card">
+          <h3 id="sort-info-title">Bubble Sort</h3>
+          <p id="sort-info-body">Bubble Sort repeatedly compares neighbouring values and swaps them when they are out of order.</p>
+          <div class="metric-row">
+            <span>Comparisons: <strong id="comparison-count">0</strong></span>
+            <span>Writes / Swaps: <strong id="write-count">0</strong></span>
+          </div>
+        </aside>
+      </section>
+
+      <section class="panel" id="pathfinding-panel" role="tabpanel" aria-labelledby="pathfinding-tab" hidden>
+        <div class="panel-header">
+          <div>
+            <p class="eyebrow">Pathfinding Lab</p>
+            <h2>Build a maze. Let the algorithm find the route.</h2>
+          </div>
+          <p class="status-pill" id="path-status">Click and drag to draw walls.</p>
+        </div>
+
+        <div class="control-grid path-controls">
+          <label class="control-card">
+            <span>Algorithm</span>
+            <select id="path-algorithm">
+              <option value="bfs">Breadth-First Search</option>
+              <option value="dijkstra">Dijkstra's Algorithm</option>
+              <option value="astar">A* Search</option>
+            </select>
+          </label>
+
+          <label class="control-card">
+            <span>Brush</span>
+            <select id="brush-mode">
+              <option value="wall">Wall</option>
+              <option value="weight">Weighted Tile</option>
+              <option value="start">Start</option>
+              <option value="target">Target</option>
+              <option value="erase">Eraser</option>
+            </select>
+          </label>
+
+          <label class="control-card">
+            <span>Speed <strong id="path-speed-value">55</strong></span>
+            <input id="path-speed" type="range" min="1" max="100" value="55" />
+          </label>
+
+          <div class="button-row wide-buttons">
+            <button id="start-path" class="btn primary">Find Path</button>
+            <button id="random-maze" class="btn ghost">Random Walls</button>
+            <button id="clear-path" class="btn ghost">Clear Path</button>
+            <button id="clear-board" class="btn danger">Clear Board</button>
+          </div>
+        </div>
+
+        <div class="visual-card grid-card">
+          <div class="legend" aria-label="Pathfinding color legend">
+            <span><i class="node-sample start"></i> Start</span>
+            <span><i class="node-sample target"></i> Target</span>
+            <span><i class="node-sample wall"></i> Wall</span>
+            <span><i class="node-sample weight"></i> Weight</span>
+            <span><i class="node-sample visited"></i> Visited</span>
+            <span><i class="node-sample path"></i> Path</span>
+          </div>
+          <div id="grid-visualizer" class="grid-visualizer" aria-label="Pathfinding grid"></div>
+        </div>
+
+        <aside class="explanation-card">
+          <h3 id="path-info-title">Breadth-First Search</h3>
+          <p id="path-info-body">BFS explores the grid level by level and finds the shortest path when every step has the same cost.</p>
+          <div class="metric-row">
+            <span>Visited: <strong id="visited-count">0</strong></span>
+            <span>Path Length: <strong id="path-length">0</strong></span>
+          </div>
+        </aside>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <span>AlgoVista</span>
+      <span>Built with HTML, CSS, and JavaScript</span>
+    </footer>
+  </div>
+
+  <script type="module" src="js/main.js"></script>
+</body>
+
+</html>
